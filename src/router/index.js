@@ -16,8 +16,8 @@ const router = createRouter({
       component: () => import("../views/SignIn.vue"),
     },
     {
-      path: "/feed",
-      component: () => import("../views/Feed.vue"),
+      path: "/game",
+      component: () => import("../views/Game.vue"),
     },
   ],
 });
