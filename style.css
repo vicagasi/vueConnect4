@@ -1,0 +1,209 @@
+#mynewItem{
+    float: left;
+}
+
+
+body{
+    background-color: rgb(190, 191, 192);
+    font-family: 'Open Sans', sans-serif;
+    background-size: 300% 300%;
+    background-image: linear-gradient(
+          -45deg, 
+          rgb(216, 21, 21) 0%, 
+          rgb(136, 114, 109) 25%, 
+          rgb(207, 95, 29) 51%, 
+          rgb(219, 155, 35) 100%
+    );  
+    animation: AnimateBG 20s ease infinite;
+  }
+  
+  @keyframes AnimateBG { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+header h1 {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 60px;
+    color: white;
+    text-shadow: -1px 1px #000000,
+                -2px 2px #ef3550,
+               -4px 4px #f48fb1,
+               -6px 6px #7e57c2,
+               -8px 8px #2196f3,
+               -10px 10px #26c6da,
+               -12px 12px #43a047,
+               -14px 14px #eeff41,
+               -16px 16px #f9a825,
+               -18px 18px #ff5722;
+    margin-left: 18px; /*Makes the text centered to other objects even with the rainbow effect */
+    margin-right: -18px;
+}
+
+header img {
+    scale: 75%;
+    min-width: 10%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    flex-shrink: 3;
+}
+
+.Username {
+    font-size: large;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    margin-top: 4%;
+}
+
+.loginButton {
+    font-size: large;
+    margin: 3%;
+    padding: 5%;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    /* box-shadow: 0 0 5px rgb(160, 160, 160); */
+}
+
+.loginButton:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+#myCounter1{
+    background-color: lightgrey;
+    color: black;
+    width: 120px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#Pl{
+    background-color: lightgrey;
+    color: black;
+    border: 1px solid black;
+    width: 600px;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+#mydiv{
+    background-color: rgba(0, 0, 0, 0);
+    width: 60%;
+    height: 60%;
+    padding: 10px;
+    text-align: center;
+}
+
+#mydiv img {
+    margin: -0.2%;
+    width: 10.3%;
+}
+
+#mydiv button {
+    margin: 0.2%;
+    width: 10%;
+    height: 10%;
+    padding: 1%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    margin-bottom: 1%;
+    border-radius: 0%;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+}
+
+#myCounter1 {
+    width: 40%;
+}
+
+#Del:hover{
+    color: red;
+
+}
+
+.lisChild{
+    color: red;
+}
+
+
+
+.LoginCtrl {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    text-align: right;
+    margin-right: 30px;
+
+}
+    
+.LoginCtrl2 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    text-align: right;
+    padding-right: 2px;
+}
+
+.LoginYes,
+.LoginNo {
+    display: none;
+}
+    
+.LoginWait {
+    display: block;
+}
+
+@media only screen and (max-width: 600px) {
+    #mydiv {
+        background-color: rgba(0, 0, 0, 0);
+        width: 95%;
+        height: 95%;
+        padding: 10px;
+        text-align: center;
+    }
+
+    header {
+        margin-top: 17%;
+    }
+
+    header h1, h2 {
+        font-size: 40px;
+    }
+
+    #Pl{
+        width: 20%;
+    }
+
+    header img {
+        scale: 0%;
+        min-width: 0%;
+        max-width: 0%;
+        max-height: 0%;
+        object-fit: cover;
+        flex-shrink: 3;
+    }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
+    
+    <!-- Fonts --> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <!--<title><%= htmlWebpackPlugin.options.title %></title>-->
+  </head>
+  <body>
+    
+    <div id="app">
+
+      <div class="LoginCtrl">
+        <div class="LoginWait">Game Loading...</div>
+        <div class="LoginNo">
+            <button onclick="myFirebase.googleLogin()" class="loginButton">Login With Google</button>
+        </div>
+        <div class="LoginYes">
+            <div class="Username"></div>
+            <button onclick="myFirebase.googleLogout()" class="loginButton">Logout</button>
+        </div>
+      </div>  
+    <header>
+        <img src="images/Red_Cutout.png">
+        <h1> {{title}}</h1>
+        <img src="images/Orange_Cutout.png">
+    </header>
+    
+
+    <!-- Add this after your H1 -->
+    <div class="LoginWait">
+    <h2>Game Loading...</h2>
+    </div>
+    <div class="LoginNo">   
+    <h2>Please log in...</h2>
+    </div>
+
+    <div class="LoginYes">    
+        <section>
+          <div id= "myCounter1">
+            <h2 onload= "LoadPlayers()"> Red is {{Player1}} and Orange is {{Player2}}</h2>
+            </div>
+        </section>
+      
+        <section>
+            <div id="myCounter1">
+                <h1 id="colorTurn"> {{Player1}}'s Turn</h1>
+            </div>
+        </section>
+            
+        
+        <main>
+            <body onload= "displayList()"></body>
+            <div id="mydiv"></div>
+        </main>
+
+        <section>
+            <div id ="myCounter1">
+                <button onclick="reStart()">Restart Game</button>
+                <button v-on:click= "LoadPlayers">Load Players</button>
+            </div>
+        </section>
+
+        <section>
+          <div id = "myCounter1">
+            <p>Change Red Name to</p>
+            <input type="text" v-on:input="change1">
+            <p>Change Orange Name to</p>
+            <input type="text" v-on:input="change2">
+          </div>
+        </section>
+            
+
+    </div>
+</div>
+
+<script id = apps>
+  var appI = new Vue({
+  el: "#app",
+  data: {
+      title: 'Connect 4',
+      Player1: "Lucky",
+      Player2: "Victor",
+      
+  },
+
+  methods: {
+    change1: function (event) {
+      console.log("change1")
+      this.Player1 = event.target.value
+      setData(DB_PATH + "appI1", this.Player1)
+    },
+
+    change2: function (event) {
+      this.Player2 = event.target.value
+      setData(DB_PATH + "appI2", this.Player2)
+    },
+
+    LoadPlayers() {
+        watchData(DB_PATH + "appI1", data => {
+          this.Player1 = data;
+        }),
+
+        watchData(DB_PATH + "appI2", data => {
+          this.Player2 = data;
+        })
+    }
+  }
+
+});
+</script>
+
+
+    <!-- The core firebase JS SDK is always required and must be loaded first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+<!-- for DB -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyCam4uA1VLJIZU_V7EroIyS5onMgmFzKOc",
+  authDomain: "connect4project-1bc75.firebaseapp.com",
+  projectId: "connect4project-1bc75",
+  storageBucket: "connect4project-1bc75.appspot.com",
+  messagingSenderId: "597315920347",
+  appId: "1:597315920347:web:b47e9d7d4c1cdb5f1d47fe",
+
+  databaseURL: "https://connect4project-1bc75-default-rtdb.firebaseio.com/",
+  //connect4project-1bc75.firebaseapp.com
+  //storageBucket: "test-csci2022-luckywoods.appspot.com"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+
+<!--<script src="src/main.js"></script>-->
+
+<script src="JS/myFirebase.js"></script>
+<!-- for DB -->
+<script src="JS/myFirebaseDB.js"></script>
+
+<script src="JS/todo.js"></script>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
