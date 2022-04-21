@@ -84,41 +84,6 @@
     </div>
 </div>
 
-<script id = apps>
-  var appI = new Vue({
-  el: "#app",
-  data: {
-      title: 'Connect 4',
-      Player1: "Lucky",
-      Player2: "Victor",
-      
-  },
-
-  methods: {
-    change1: function (event) {
-      console.log("change1")
-      this.Player1 = event.target.value
-      setData(DB_PATH + "appI1", this.Player1)
-    },
-
-    change2: function (event) {
-      this.Player2 = event.target.value
-      setData(DB_PATH + "appI2", this.Player2)
-    },
-
-    LoadPlayers() {
-        watchData(DB_PATH + "appI1", data => {
-          this.Player1 = data;
-        }),
-
-        watchData(DB_PATH + "appI2", data => {
-          this.Player2 = data;
-        })
-    }
-  }
-
-});
-</script>
 
 
     <!-- The core firebase JS SDK is always required and must be loaded first -->

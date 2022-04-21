@@ -1,44 +1,39 @@
 let colorTurn = document.querySelector("#colorTurn");
 //var Users = document.querySelector("#apps")
 
-/*var appI = new Vue({
-    el: "#app",
-    data: {
-        title: 'Connect 4',
-        Player1: "Lucky",
-        Player2: "Victor",
+var appI = new Vue({
+  el: "#app",
+  data: {
+      title: 'Connect 4',
+      Player1: "Lucky",
+      Player2: "Victor",
+      
+   },
+
+  methods: {
+    change1: function (event) {
+      console.log("change1")
+      this.Player1 = event.target.value
+      setData(DB_PATH + "appI1", this.Player1)
     },
-  
-    methods: {
-      change1: function (event) {
-        console.log("change1")
-        this.Player1 = "Bob"
-        setData(DB_PATH + "appI", appI.data.Player1)
-      },
-  
-      change2: function (event) {
-        this.Player2 = event.target.value
-        setData(DB_PATH + "appI", appI.data)
-      },
+
+    change2: function (event) {
+      this.Player2 = event.target.value
+      setData(DB_PATH + "appI2", this.Player2)
+    },
+
+    LoadPlayers() {
+        watchData(DB_PATH + "appI1", data => {
+          this.Player1 = data;
+        }),
+
+        watchData(DB_PATH + "appI2", data => {
+          this.Player2 = data;
+        })
     }
-  
-    });
-*/
+}
 
-/*function displayName(){
-    //let div = document.getElementById('mydiv');
-    let h = '';
-        h += '<p>' + "Change Red Name to" + '</p>' +
-            '<input type="text" v-on:input="change1">' +
-            '<p>' + "Change Orange Name to" + '</p>' +
-            '<input type="text" v-on:input="change2">' + '</input>';
-        
-
-    playerDisplay.innerText = "Red is " + "Player1" + " and Orange is " + "Player2";
-        //h += '<span = "lisChild">' 
-          //          + '<img src="images/Orange.png">' + " " 
-            //        + '</span>';
-}*/
+});
 
 
 // TEST FIXME
@@ -283,7 +278,7 @@ function changeItem(let){
         let numb = myLine[let];
         boardPiece[numb][let] = "Red"; 
         changeColor = 2;
-        colorTurn.innerText = "{{Player2}} Turn";
+        colorTurn.innerText = Player2 + " Turn";
         boardPiece.push();
         myLine[let]--;
     }
@@ -292,7 +287,7 @@ function changeItem(let){
         let numb = myLine[let];
         boardPiece[numb][let] = "Orange"; 
         changeColor = 1;
-        colorTurn.innerText = "{{Player1}} Turn";
+        colorTurn.innerText = Player1 + " Turn";
         boardPiece.push();
         myLine[let]--;
     }
@@ -310,7 +305,7 @@ function changeItem(let){
 
 function gameOverAlertRed(){
     setTimeout(() => {
-        if(confirm("{{Player1}} Wins!!!")){
+        if(confirm(Player1 + " Wins!!!")){
             reStart();
         }
         else{
@@ -321,7 +316,7 @@ function gameOverAlertRed(){
 
 function gameOverAlertOrange(){
     setTimeout(() => {
-        if(confirm("{{Player2}} Wins!!!")){
+        if(confirm(Player2 + " Wins!!!")){
             reStart();
         }
         else{
