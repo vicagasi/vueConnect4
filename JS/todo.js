@@ -55,6 +55,15 @@ function load() {
         watchData(DB_PATH + "Users", data => {
             Users = data;
         });
+
+        watchData(DB_PATH + "appI1", data => {
+            this.appI.Player1 = data;
+        }),
+  
+          watchData(DB_PATH + "appI2", data => {
+            this.appI.Player2 = data;
+        })
+
         watchData(DB_PATH + DEFAULT_TODO, data => {
             //if (data != boardPiece){
             boardPiece = data;
@@ -78,11 +87,11 @@ function load() {
             }
 
             if(redTurn <= orangeTurn){
-                colorTurn.innerText = "{{Player1}} Turn";
+                this.colorTurn.innerText = appI.Player1 + "'s Turn";
                 changeColor = 1;
             }
             else if(redTurn >= orangeTurn){
-                colorTurn.innerText = "{{Player2}} Turn";
+                this.colorTurn.innerText = appI.Player2 + "'s Turn";
                 changeColor = 2;
             }
 
@@ -278,7 +287,7 @@ function changeItem(let){
         let numb = myLine[let];
         boardPiece[numb][let] = "Red"; 
         changeColor = 2;
-        colorTurn.innerText = Player2 + " Turn";
+        this.colorTurn.innerText = appI.Player2 + "'s Turn";
         boardPiece.push();
         myLine[let]--;
     }
@@ -287,7 +296,7 @@ function changeItem(let){
         let numb = myLine[let];
         boardPiece[numb][let] = "Orange"; 
         changeColor = 1;
-        colorTurn.innerText = Player1 + " Turn";
+        this.colorTurn.innerText = appI.Player1 + "'s Turn";
         boardPiece.push();
         myLine[let]--;
     }
@@ -305,7 +314,7 @@ function changeItem(let){
 
 function gameOverAlertRed(){
     setTimeout(() => {
-        if(confirm(Player1 + " Wins!!!")){
+        if(confirm(appI.Player1 + " Wins!!!")){
             reStart();
         }
         else{
@@ -316,7 +325,7 @@ function gameOverAlertRed(){
 
 function gameOverAlertOrange(){
     setTimeout(() => {
-        if(confirm(Player2 + " Wins!!!")){
+        if(confirm(appI.Player2 + " Wins!!!")){
             reStart();
         }
         else{
@@ -335,7 +344,7 @@ function reStart(){
 
     win = 0;
     changeColor = 1;
-    colorTurn.innerText = "{{Player1}} Turn";
+    colorTurn.innerText = appI.Player1 + "'s Turn";
     save();
     displayList();
 
