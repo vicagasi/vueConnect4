@@ -132,6 +132,12 @@ let redVic1 = 0;
 let oranVic1 = 0;
 let redVic2 = 0;
 let oranVic2 = 0;
+
+let redVic3 = 0;
+let oranVic3 = 0;
+let redVic4 = 0;
+let oranVic4 = 0;
+
 let upDate = 0;
 let win = 0;
 
@@ -166,9 +172,78 @@ function checkRow(){
     }
 }
 
+let update2 = 0;
+let holder =0
+function checkDiagRight(let){
+    holder = let;
+    for(let j = 0; j < 5; j++){
+        
+        upDate = j + 1;
+        update2 = holder + 1;
+
+        if(boardPiece[j][holder] == boardPiece[upDate][update2]){
+            if(boardPiece[j][holder] == "Red"){
+                redVic3++;
+                if(redVic3 == 3){
+                    win = 1;
+                }
+            }
+
+            else if(boardPiece[j][let] == "Orange"){
+                oranVic3++;
+                if(oranVic3 == 3){
+                    win = 2;
+                }
+            }
+        }
+        else{
+            upDate = 0;
+            update2 = 0;
+            redVic3 = 0;
+            oranVic3 = 0;
+        }
+        holder++;
+    }
+}
+
+let update3 = 0;
+function checkDiagLeft(let){
+    holder = let;
+    for(let j = 0; j < 5; j++){
+        
+        upDate = j + 1;
+        update2 = holder - 1;
+
+        if(boardPiece[j][holder] == boardPiece[upDate][update2]){
+            if(boardPiece[j][holder] == "Red"){
+                redVic4++;
+                if(redVic4 == 3){
+                    win = 1;
+                }
+            }
+
+            else if(boardPiece[j][let] == "Orange"){
+                oranVic4++;
+                if(oranVic4 == 3){
+                    win = 2;
+                }
+            }
+        }
+        else{
+            upDate = 0;
+            update2 = 0;
+            redVic4 = 0;
+            oranVic4 = 0;
+        }
+        holder = holder - 1;
+    }
+}
+
 function checkHeight(let){
     for(let j = 0; j < 5; j++){
+        
         upDate = j + 1;
+        
         if(boardPiece[j][let] == boardPiece[upDate][let]){
             if(boardPiece[j][let] == "Red"){
                 redVic2++;
@@ -176,6 +251,7 @@ function checkHeight(let){
                     win = 1;
                 }
             }
+
             else if(boardPiece[j][let] == "Orange"){
                 oranVic2++;
                 if(oranVic2 == 3){
@@ -189,6 +265,7 @@ function checkHeight(let){
             oranVic2 = 0;
         }
     }
+    
 
     /*if(upDate < 6){
         if (boardPiece[vicCheckHei][let] == boardPiece[upDate][let]){
@@ -248,6 +325,7 @@ function displayList(){
                     + '<img src="images/Red.png">' + " " 
                     + '</span>';
                     checkRow();
+                
                 }
 
                 else if(boardPiece[i][j] == "Orange"){
@@ -256,6 +334,7 @@ function displayList(){
                     + '<img src="images/Orange.png">' + " " 
                     + '</span>';
                     checkRow();
+                    
                 }
 
                 else{
@@ -275,7 +354,18 @@ function displayList(){
     vicCheckRow = 0;
     for(let i = 0; i < 7; i++){
         checkHeight(i);
+        checkDiagRight(i);
+        checkDiagLeft(i);
+
     }
+
+    for(let i = 0; i < 6; i++){
+        vicCheckRow = i;
+        for(let j = 0; j < 7; j++){
+            vicCheckCol = j;
+        }
+    }
+
     console.log("Here is the html: ", h)
 }
 
